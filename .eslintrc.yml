@@ -5,7 +5,6 @@ env:
   node: true
 
 extends:
-  # - 'airbnb-base'
   - 'eslint-config-airbnb-base'
 
 rules:
