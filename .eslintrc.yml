@@ -5,7 +5,7 @@ env:
   node: true
 
 extends:
-  - 'eslint-config-airbnb-base'
+  - 'airbnb-base'
 
 rules:
   no-console: "off" # получить возможность использовать console
