@@ -1,3 +1,5 @@
-[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
+# *Проект #1*: Игры разума
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/388967156580af846000/maintainability)](https://codeclimate.com/github/ynsem/frontend-project-lvl1/maintainability)
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/388967156580af846000/test_coverage)](https://codeclimate.com/github/ynsem/frontend-project-lvl1/test_coverage)
