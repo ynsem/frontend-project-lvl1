@@ -5,49 +5,48 @@ import readlineSync from 'readline-sync';
 const getUsername = () => readlineSync.question('May I have your name? ');
 
 // имя пользователя
-const userName = getUsername();
+let userName = '';
 
 export const greetUser = () => {
-  console.log(`Welcome to the Brain Games!\nHello, ${userName}!`);
+  console.log('Welcome to the Brain Games!');
+  userName = getUsername();
+  console.log(`Hello, ${userName}!`);
 };
 
 // для brain-even
 
-const MIN_NUMBER = 1;
-const MAX_NUMBER = 99;
-const GAME_ROUNDS = 3;
+// посмотрим как пойдет дальше, может вообще будет для каждой игры своя
 
-// даст вам неравномерное распределение, тут подойдет, а если надо равномерное?
+
+// даст неравномерное распределение, тут подойдет, а если надо равномерное?
 const getRandomNumber = (min, max) => Math.round(Math.random() * (max - min) + min);
 
-// проверяет на четность true, если нечетное - вернет false
+// проверяет на четность 'yes', если нечетное - вернет 'no'
 const getTrueAnswer = (number) => (number % 2 === 0 ? 'yes' : 'no');
 
 // получаем случайное число
-export const playGame = () => {
+export const playGame = (boundaries, rounds) => {
   let trueAnswerCount = 0;
 
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
-  for (let i = 0; i < GAME_ROUNDS; i += 1) {
-    const gameNumber = getRandomNumber(MIN_NUMBER, MAX_NUMBER);
+  for (let i = 0; i < rounds; i += 1) {
+    const gameNumber = getRandomNumber(boundaries.min, boundaries.max);
     const trueAnswer = getTrueAnswer(gameNumber);
 
-    const answer = readlineSync.question(`Question: ${gameNumber} \n`, {
-      trueValue: trueAnswer,
-    });
+    const userAnswer = readlineSync.question(`Question: ${gameNumber}\n`);
 
-    console.log(`Your answer: ${answer}`);
+    console.log(`Your answer: ${userAnswer}`);
 
-    if (answer === true) {
+    if (userAnswer === trueAnswer) {
       console.log('Correct!');
       trueAnswerCount += 1;
     } else {
-      console.log(`"${answer}" is wrong answer ;(. Correct answer was "${trueAnswer}".\nLet's try again, ${userName}!`);
+      console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${trueAnswer}".\nLet's try again, ${userName}!`);
     }
   }
 
-  if (trueAnswerCount === GAME_ROUNDS) {
+  if (trueAnswerCount === rounds) {
     console.log(`Congratulations, ${userName}!`);
   } else {
     console.log(`You loosed, ${userName} ;(`);
