@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-import { greetUser, playGcd } from '../src/index.js';
+import { greetUser } from '../src/index.js';
+import playGcd from '../src/games/gcd.js';
 
 const GAME_PARAMS = {
   min: 2,
