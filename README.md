@@ -10,3 +10,6 @@
 
 ## Пример установки и использования пакета Gcd
 [![asciicast](https://asciinema.org/a/V3d5TJHPQhwQl1WGqPsKaAbtQ.svg)](https://asciinema.org/a/V3d5TJHPQhwQl1WGqPsKaAbtQ)
+
+## Пример установки и использования пакета Progressive
+[![asciicast](https://asciinema.org/a/508p1akzUqr1pIfixjTdkhRse.svg =100х100](https://asciinema.org/a/508p1akzUqr1pIfixjTdkhRse)
