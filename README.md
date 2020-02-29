@@ -7,3 +7,6 @@
 
 ## Пример установки и использования пакета Calc
 [![asciicast](https://asciinema.org/a/Cek5mg5ma5Ed01DasA36u1d67.svg)](https://asciinema.org/a/Cek5mg5ma5Ed01DasA36u1d67)
+
+## Пример установки и использования пакета Gcd
+[![asciicast](https://asciinema.org/a/V3d5TJHPQhwQl1WGqPsKaAbtQ.svg)](https://asciinema.org/a/V3d5TJHPQhwQl1WGqPsKaAbtQ)
