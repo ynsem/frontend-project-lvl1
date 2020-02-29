@@ -13,28 +13,43 @@ export const greetUser = () => {
   console.log(`Hello, ${userName}!`);
 };
 
-// для brain-even
-
-// посмотрим как пойдет дальше, может вообще будет для каждой игры своя
-
-
-// даст неравномерное распределение, тут подойдет, а если надо равномерное?
-const getRandomNumber = (min, max) => Math.round(Math.random() * (max - min) + min);
+// скопировано с https://learn.javascript.ru/task/random-int-min-max
+const getRandomInteger = (min, max) => Math.round(min - 0.5 + Math.random() * (max - min + 1));
 
 // проверяет на четность 'yes', если нечетное - вернет 'no'
-const getTrueAnswer = (number) => (number % 2 === 0 ? 'yes' : 'no');
+const getTrueAnswerEven = (number) => (number % 2 === 0 ? 'yes' : 'no');
 
-// получаем случайное число
-export const playGame = (boundaries, rounds) => {
+// для brain-calc
+const getTrueAnswerCalc = (firstTerm, secondTerm, operator) => {
+  let answer = 0;
+  switch (operator) {
+    case '+':
+      answer = firstTerm + secondTerm;
+      break;
+    case '-':
+      answer = firstTerm - secondTerm;
+      break;
+    case '*':
+      answer = firstTerm * secondTerm;
+      break;
+    default:
+  }
+
+  return `${answer}`;
+};
+
+export const playEven = (gameParams) => {
   let trueAnswerCount = 0;
 
-  console.log('Answer "yes" if the number is even, otherwise answer "no".');
+  console.log(gameParams.rules);
 
-  for (let i = 0; i < rounds; i += 1) {
-    const gameNumber = getRandomNumber(boundaries.min, boundaries.max);
-    const trueAnswer = getTrueAnswer(gameNumber);
+  for (let i = 0; i < gameParams.rounds; i += 1) {
+    //
+    const gameExpression = getRandomInteger(gameParams.min, gameParams.max);
+    const trueAnswer = getTrueAnswerEven(gameExpression);
+    //
 
-    const userAnswer = readlineSync.question(`Question: ${gameNumber}\n`);
+    const userAnswer = readlineSync.question(`Question: ${gameExpression}\n`);
 
     console.log(`Your answer: ${userAnswer}`);
 
@@ -46,7 +61,41 @@ export const playGame = (boundaries, rounds) => {
     }
   }
 
-  if (trueAnswerCount === rounds) {
+  if (trueAnswerCount === gameParams.rounds) {
+    console.log(`Congratulations, ${userName}!`);
+  } else {
+    console.log(`You loosed, ${userName} ;(`);
+  }
+};
+
+export const playCalc = (gameParams) => {
+  let trueAnswerCount = 0;
+
+  console.log(gameParams.rules);
+
+  for (let i = 0; i < gameParams.rounds; i += 1) {
+    //
+    const operators = ['+', '-', '*'];
+    const firstTerm = getRandomInteger(gameParams.min, gameParams.max);
+    const secondTerm = getRandomInteger(gameParams.min, gameParams.max);
+    const operator = operators[getRandomInteger(0, operators.length - 1)];
+    const gameExpression = `${firstTerm} ${operator} ${secondTerm}`;
+    const trueAnswer = getTrueAnswerCalc(firstTerm, secondTerm, operator);
+    //
+
+    const userAnswer = readlineSync.question(`Question: ${gameExpression}\n`);
+
+    console.log(`Your answer: ${userAnswer}`);
+
+    if (userAnswer === trueAnswer) {
+      console.log('Correct!');
+      trueAnswerCount += 1;
+    } else {
+      console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${trueAnswer}".\nLet's try again, ${userName}!`);
+    }
+  }
+
+  if (trueAnswerCount === gameParams.rounds) {
     console.log(`Congratulations, ${userName}!`);
   } else {
     console.log(`You loosed, ${userName} ;(`);
