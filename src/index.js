@@ -55,21 +55,24 @@ const startRound = (gameExpression, trueAnswer) => {
 export const playEven = (gameParams) => {
   console.log(gameParams.rules);
   let answerFlag = true;
+  let round = 0;
 
-  while (answerFlag) {
+  while (answerFlag && round < gameParams.rounds) {
     const gameExpression = getRandomInteger(gameParams.min, gameParams.max);
     const trueAnswer = getTrueAnswerEven(gameExpression);
     answerFlag = startRound(gameExpression, trueAnswer);
+    round += 1;
   }
 };
 
 export const playCalc = (gameParams) => {
   console.log(gameParams.rules);
   let answerFlag = true;
+  let round = 0;
 
   const operators = ['+', '-', '*'];
 
-  while (answerFlag) {
+  while (answerFlag && round < gameParams.rounds) {
     const firstTerm = getRandomInteger(gameParams.min, gameParams.max);
     const secondTerm = getRandomInteger(gameParams.min, gameParams.max);
     const operator = operators[getRandomInteger(0, operators.length - 1)];
@@ -77,5 +80,6 @@ export const playCalc = (gameParams) => {
     const gameExpression = `${firstTerm} ${operator} ${secondTerm}`;
     const trueAnswer = getTrueAnswerCalc(firstTerm, secondTerm, operator);
     answerFlag = startRound(gameExpression, trueAnswer);
+    round += 1;
   }
 };
