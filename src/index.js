@@ -38,66 +38,44 @@ const getTrueAnswerCalc = (firstTerm, secondTerm, operator) => {
   return `${answer}`;
 };
 
-export const playEven = (gameParams) => {
-  let trueAnswerCount = 0;
+// ход раунда
+const startRound = (gameExpression, trueAnswer) => {
+  const userAnswer = readlineSync.question(`Question: ${gameExpression}\n`);
+  console.log(`Your answer: ${userAnswer}`);
 
-  console.log(gameParams.rules);
-
-  for (let i = 0; i < gameParams.rounds; i += 1) {
-    //
-    const gameExpression = getRandomInteger(gameParams.min, gameParams.max);
-    const trueAnswer = getTrueAnswerEven(gameExpression);
-    //
-
-    const userAnswer = readlineSync.question(`Question: ${gameExpression}\n`);
-
-    console.log(`Your answer: ${userAnswer}`);
-
-    if (userAnswer === trueAnswer) {
-      console.log('Correct!');
-      trueAnswerCount += 1;
-    } else {
-      console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${trueAnswer}".\nLet's try again, ${userName}!`);
-    }
+  if (userAnswer === trueAnswer) {
+    console.log('Correct!');
+    return true;
   }
 
-  if (trueAnswerCount === gameParams.rounds) {
-    console.log(`Congratulations, ${userName}!`);
-  } else {
-    console.log(`You loosed, ${userName} ;(`);
+  console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${trueAnswer}".\nLet's try again, ${userName}!`);
+  return false;
+};
+
+export const playEven = (gameParams) => {
+  console.log(gameParams.rules);
+  let answerFlag = true;
+
+  while (answerFlag) {
+    const gameExpression = getRandomInteger(gameParams.min, gameParams.max);
+    const trueAnswer = getTrueAnswerEven(gameExpression);
+    answerFlag = startRound(gameExpression, trueAnswer);
   }
 };
 
 export const playCalc = (gameParams) => {
-  let trueAnswerCount = 0;
-
   console.log(gameParams.rules);
+  let answerFlag = true;
 
-  for (let i = 0; i < gameParams.rounds; i += 1) {
-    //
-    const operators = ['+', '-', '*'];
+  const operators = ['+', '-', '*'];
+
+  while (answerFlag) {
     const firstTerm = getRandomInteger(gameParams.min, gameParams.max);
     const secondTerm = getRandomInteger(gameParams.min, gameParams.max);
     const operator = operators[getRandomInteger(0, operators.length - 1)];
+
     const gameExpression = `${firstTerm} ${operator} ${secondTerm}`;
     const trueAnswer = getTrueAnswerCalc(firstTerm, secondTerm, operator);
-    //
-
-    const userAnswer = readlineSync.question(`Question: ${gameExpression}\n`);
-
-    console.log(`Your answer: ${userAnswer}`);
-
-    if (userAnswer === trueAnswer) {
-      console.log('Correct!');
-      trueAnswerCount += 1;
-    } else {
-      console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${trueAnswer}".\nLet's try again, ${userName}!`);
-    }
-  }
-
-  if (trueAnswerCount === gameParams.rounds) {
-    console.log(`Congratulations, ${userName}!`);
-  } else {
-    console.log(`You loosed, ${userName} ;(`);
+    answerFlag = startRound(gameExpression, trueAnswer);
   }
 };
