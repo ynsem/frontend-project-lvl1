@@ -13,3 +13,6 @@
 
 ## Пример установки и использования пакета Progressive
 [![asciicast](https://asciinema.org/a/508p1akzUqr1pIfixjTdkhRse.svg)](https://asciinema.org/a/508p1akzUqr1pIfixjTdkhRse)
+
+## Пример установки и использования пакета Prime
+[![asciicast](https://asciinema.org/a/vsqnPdT0t1O0ir5yy3fTfxJw1.svg)](https://asciinema.org/a/vsqnPdT0t1O0ir5yy3fTfxJw1)
