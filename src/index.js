@@ -21,8 +21,7 @@ export const startRound = (gameExpression, trueAnswer) => {
 };
 
 export const play = (gameParams, playGame) => {
-  console.log('Welcome to the Brain Games!');
-  console.log(gameParams.rules);
+  console.log(`Welcome to the Brain Games!\n${gameParams.rules}`);
 
   for (let i = 0; i < gameParams.rounds; i += 1) {
     if (!playGame()) {
