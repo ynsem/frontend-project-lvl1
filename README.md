@@ -3,9 +3,6 @@
 
 ![CI](https://github.com/ynsem/frontend-project-lvl1/workflows/CI/badge.svg) [![Maintainability](https://api.codeclimate.com/v1/badges/388967156580af846000/maintainability)](https://codeclimate.com/github/ynsem/frontend-project-lvl1/maintainability)
 
-## keywords:
-мини-игры, brain-games, even, calc, gcd, progressive, prime, четный, нечетный, наибольший общий делитель, НОД, прогрессия, простое число, игры в консоли
-
 ## Пакет Even
 Представляет собой игру "Проверка на чётность". Суть игры в следующем: пользователю показывается случайное число. И ему нужно ответить yes, если число чётное, или no — если нечётное.
 
@@ -35,3 +32,6 @@
 
 ### Пример установки и использования пакета Prime
 [![asciicast](https://asciinema.org/a/vsqnPdT0t1O0ir5yy3fTfxJw1.svg)](https://asciinema.org/a/vsqnPdT0t1O0ir5yy3fTfxJw1)
+
+## keywords:
+мини-игры, brain-games, even, calc, gcd, progressive, prime, четный, нечетный, наибольший общий делитель, НОД, прогрессия, простое число, игры в консоли

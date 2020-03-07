@@ -1,7 +1,7 @@
 {
   "name": "brain-games",
   "version": "0.5.1",
-  "description": "",
+  "description": "set of mini-games, launched from the console",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +10,15 @@
     "type": "git",
     "url": "git+https://github.com/ynsem/frontend-project-lvl1.git"
   },
+  "keywords": [
+    "even",
+    "calc",
+    "gcd",
+    "progression",
+    "prime",
+    "brain-games",
+    "mini-games in console"
+  ],
   "author": "ynsem",
   "license": "ISC",
   "bugs": {
