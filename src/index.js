@@ -28,3 +28,15 @@ export const startRound = (gameExpression, trueAnswer) => {
   console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${trueAnswer}".\nLet's try again, ${userName}!`);
   return false;
 };
+
+export const play = (gameParams, playGame) => {
+  greetUser();
+
+  console.log(gameParams.rules);
+
+  for (let i = 0; i < gameParams.rounds; i += 1) {
+    if (!playGame()) {
+      break;
+    }
+  }
+};

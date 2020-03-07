@@ -1,4 +1,11 @@
-import { startRound, getRandomInt } from '../index.js';
+import { startRound, getRandomInt, play } from '../index.js';
+
+const GAME_PARAMS = {
+  min: 1,
+  max: 99,
+  rounds: 3,
+  rules: 'What is the result of the expression?',
+};
 
 const getTrueAnswerCalc = (firstTerm, secondTerm, operator) => {
   let answer = 0;
@@ -18,26 +25,20 @@ const getTrueAnswerCalc = (firstTerm, secondTerm, operator) => {
   return `${answer}`;
 };
 
-const playCalc = (gameParams) => {
-  console.log(gameParams.rules);
-  let answerFlag = true;
-  let round = 0;
-
+const startCalcRound = () => {
   const operators = ['+', '-', '*'];
 
-  while (answerFlag && round < gameParams.rounds) {
-    const firstTerm = getRandomInt(gameParams.min, gameParams.max);
-    const secondTerm = getRandomInt(gameParams.min, gameParams.max);
+  const firstTerm = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
+  const secondTerm = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
 
-    const operator = operators[getRandomInt(0, operators.length - 1)];
+  const operator = operators[getRandomInt(0, operators.length - 1)];
 
-    const gameExpression = `${firstTerm} ${operator} ${secondTerm}`;
+  const gameExpression = `${firstTerm} ${operator} ${secondTerm}`;
+  const trueAnswer = getTrueAnswerCalc(firstTerm, secondTerm, operator);
 
-    const trueAnswer = getTrueAnswerCalc(firstTerm, secondTerm, operator);
-
-    answerFlag = startRound(gameExpression, trueAnswer);
-    round += 1;
-  }
+  return startRound(gameExpression, trueAnswer);
 };
+
+const playCalc = () => play(GAME_PARAMS, startCalcRound);
 
 export default playCalc;
