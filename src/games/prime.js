@@ -1,10 +1,10 @@
-import { startRound, getRandomInt, play } from '../index.js';
+import { getRandomInt, playGame } from '../index.js';
 
 const GAME_PARAMS = {
   min: 1,
   max: 99,
-  rounds: 3,
-  rules: 'Answer "yes" if given number is prime. Otherwise answer "no".',
+  roundsCount: 3,
+  rule: 'Answer "yes" if given number is prime. Otherwise answer "no".',
 };
 
 // проверяет простое ли число 'yes', если нет - вернет 'no'
@@ -20,12 +20,16 @@ const getTrueAnswerPrime = (number) => {
 };
 
 
-const startPrimeRound = () => {
-  const gameExpression = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
-  const trueAnswer = getTrueAnswerPrime(gameExpression);
-  return startRound(gameExpression, trueAnswer);
+const getPrimeParams = () => {
+  // подумать над названием
+  const gameParams = {};
+
+  gameParams.expression = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
+  gameParams.trueAnswer = getTrueAnswerPrime(gameParams.expression);
+
+  return gameParams;
 };
 
-const playPrime = () => play(GAME_PARAMS, startPrimeRound);
+const playPrime = () => playGame(GAME_PARAMS, getPrimeParams);
 
 export default playPrime;

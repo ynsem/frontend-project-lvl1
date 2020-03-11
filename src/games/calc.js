@@ -1,11 +1,13 @@
-import { startRound, getRandomInt, play } from '../index.js';
+import { getRandomInt, playGame } from '../index.js';
 
 const GAME_PARAMS = {
   min: 1,
   max: 99,
-  rounds: 3,
-  rules: 'What is the result of the expression?',
+  roundsCount: 3,
+  rule: 'What is the result of the expression?',
 };
+
+const OPERATORS = ['+', '-', '*'];
 
 const getTrueAnswerCalc = (firstTerm, secondTerm, operator) => {
   let answer = 0;
@@ -25,20 +27,21 @@ const getTrueAnswerCalc = (firstTerm, secondTerm, operator) => {
   return `${answer}`;
 };
 
-const startCalcRound = () => {
-  const operators = ['+', '-', '*'];
+const getCalcParams = () => {
+  // подумать над названием
+  const gameParams = {};
 
   const firstTerm = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
   const secondTerm = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
 
-  const operator = operators[getRandomInt(0, operators.length - 1)];
+  const operator = OPERATORS[getRandomInt(0, OPERATORS.length - 1)];
 
-  const gameExpression = `${firstTerm} ${operator} ${secondTerm}`;
-  const trueAnswer = getTrueAnswerCalc(firstTerm, secondTerm, operator);
+  gameParams.expression = `${firstTerm} ${operator} ${secondTerm}`;
+  gameParams.trueAnswer = getTrueAnswerCalc(firstTerm, secondTerm, operator);
 
-  return startRound(gameExpression, trueAnswer);
+  return gameParams;
 };
 
-const playCalc = () => play(GAME_PARAMS, startCalcRound);
+const playCalc = () => playGame(GAME_PARAMS, getCalcParams);
 
 export default playCalc;

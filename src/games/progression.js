@@ -1,10 +1,10 @@
-import { startRound, getRandomInt, play } from '../index.js';
+import { getRandomInt, playGame } from '../index.js';
 
 const GAME_PARAMS = {
   min: 1,
   max: 10,
-  rounds: 3,
-  rules: 'What number is missing in the progression?',
+  roundsCount: 3,
+  rule: 'What number is missing in the progression?',
 };
 
 // генерирует прогрессию
@@ -18,21 +18,24 @@ const getTrueAnswerProgression = (start, step) => {
   return result;
 };
 
-const startProgressionRound = () => {
+const getProgressionParams = () => {
+  // подумать над названием
+  const gameParams = {};
+
   const start = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
   const step = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
 
   const progression = getTrueAnswerProgression(start, step);
   const randomIndex = getRandomInt(0, progression.length - 1);
 
-  const trueAnswer = `${progression[randomIndex]}`;
+  gameParams.trueAnswer = `${progression[randomIndex]}`;
   progression[randomIndex] = '..';
 
-  const gameExpression = progression.join(' ');
+  gameParams.expression = progression.join(' ');
 
-  return startRound(gameExpression, trueAnswer);
+  return gameParams;
 };
 
-const playProgression = () => play(GAME_PARAMS, startProgressionRound);
+const playProgression = () => playGame(GAME_PARAMS, getProgressionParams);
 
 export default playProgression;

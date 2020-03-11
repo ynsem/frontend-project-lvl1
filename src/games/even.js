@@ -1,21 +1,25 @@
-import { startRound, getRandomInt, play } from '../index.js';
+import { getRandomInt, playGame, isEven } from '../index.js';
 
 const GAME_PARAMS = {
   min: 1,
   max: 99,
-  rounds: 3,
-  rules: 'Answer "yes" if the number is even, otherwise answer "no".',
+  roundsCount: 3,
+  rule: 'Answer "yes" if the number is even, otherwise answer "no".',
 };
 
 // проверяет на четность 'yes', если нечетное - вернет 'no'
-const getTrueAnswerEven = (number) => (number % 2 === 0 ? 'yes' : 'no');
+const getTrueAnswerEven = (number) => (isEven(number) ? 'yes' : 'no');
 
-const startEvenRound = () => {
-  const gameExpression = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
-  const trueAnswer = getTrueAnswerEven(gameExpression);
-  return startRound(gameExpression, trueAnswer);
+const getEvenParams = () => {
+  // подумать над названием
+  const gameParams = {};
+
+  gameParams.expression = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
+  gameParams.trueAnswer = getTrueAnswerEven(gameParams.expression);
+
+  return gameParams;
 };
 
-const playEven = () => play(GAME_PARAMS, startEvenRound);
+const playEven = () => playGame(GAME_PARAMS, getEvenParams);
 
 export default playEven;

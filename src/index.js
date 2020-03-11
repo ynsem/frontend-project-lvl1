@@ -1,31 +1,27 @@
 import readlineSync from 'readline-sync';
 
-const userName = readlineSync.question('May I have your name? ');
-console.log(`Hello, ${userName}!`);
-
 // скопировано с https://learn.javascript.ru/task/random-int-min-max
 export const getRandomInt = (min, max) => Math.round(min - 0.5 + Math.random() * (max - min + 1));
 
-// ход раунда
-export const startRound = (gameExpression, trueAnswer) => {
-  const userAnswer = readlineSync.question(`Question: ${gameExpression}\n`);
-  console.log(`Your answer: ${userAnswer}`);
+export const isEven = (number) => number % 2 === 0;
 
-  if (userAnswer === trueAnswer) {
-    console.log('Correct!');
-    return true;
-  }
+export const playGame = (gameParams, play) => {
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}!`);
+  console.log(`Welcome to the Brain Games!\n${gameParams.rule}`);
 
-  console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${trueAnswer}".\nLet's try again, ${userName}!`);
-  return false;
-};
+  for (let i = 0; i < gameParams.roundsCount; i += 1) {
+    const params = play();
 
-export const play = (gameParams, playGame) => {
-  console.log(`Welcome to the Brain Games!\n${gameParams.rules}`);
+    const userAnswer = readlineSync.question(`Question: ${params.expression}\n`);
+    console.log(`Your answer: ${userAnswer}`);
 
-  for (let i = 0; i < gameParams.rounds; i += 1) {
-    if (!playGame()) {
+    if (userAnswer !== params.trueAnswer) {
+      console.log(`"${userAnswer}" is wrong answer ;(. Correct answer was "${params.trueAnswer}".`);
+      console.log(`Let's try again, ${userName}!`);
       break;
     }
+
+    console.log('Correct!');
   }
 };

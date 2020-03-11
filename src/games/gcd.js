@@ -1,10 +1,10 @@
-import { startRound, getRandomInt, play } from '../index.js';
+import { getRandomInt, playGame } from '../index.js';
 
 const GAME_PARAMS = {
   min: 2,
   max: 50,
-  rounds: 3,
-  rules: 'Find the greatest common divisor of given numbers.',
+  roundsCount: 3,
+  rule: 'Find the greatest common divisor of given numbers.',
 };
 
 // ищет наибольший общий делитель
@@ -21,15 +21,18 @@ const getTrueAnswerGcd = (firstNumber, secondNumber) => {
   return `${Math.max(...result)}`;
 };
 
-const startGcdRound = () => {
+const getGcdParams = () => {
+  // подумать над названием
+  const gameParams = {};
+
   const firstNumber = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
   const secondNumber = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
 
-  const gameExpression = `${firstNumber} ${secondNumber}`;
-  const trueAnswer = getTrueAnswerGcd(firstNumber, secondNumber);
-  return startRound(gameExpression, trueAnswer);
+  gameParams.expression = `${firstNumber} ${secondNumber}`;
+  gameParams.trueAnswer = getTrueAnswerGcd(firstNumber, secondNumber);
+  return gameParams;
 };
 
-const playGcd = () => play(GAME_PARAMS, startGcdRound);
+const playGcd = () => playGame(GAME_PARAMS, getGcdParams);
 
 export default playGcd;
