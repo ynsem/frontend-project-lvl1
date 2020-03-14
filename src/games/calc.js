@@ -1,9 +1,9 @@
-import { getRandomInt, playGame } from '../index.js';
+import playGame from '../index.js';
+import getRandomInt from '../utils.js';
 
 const GAME_PARAMS = {
   min: 1,
   max: 99,
-  roundsCount: 3,
   rule: 'What is the result of the expression?',
 };
 
@@ -28,18 +28,18 @@ const getTrueAnswerCalc = (firstTerm, secondTerm, operator) => {
 };
 
 const getCalcParams = () => {
-  // подумать над названием
-  const gameParams = {};
-
   const firstTerm = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
   const secondTerm = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
 
   const operator = OPERATORS[getRandomInt(0, OPERATORS.length - 1)];
 
-  gameParams.expression = `${firstTerm} ${operator} ${secondTerm}`;
-  gameParams.trueAnswer = getTrueAnswerCalc(firstTerm, secondTerm, operator);
+  const question = `${firstTerm} ${operator} ${secondTerm}`;
+  const answer = getTrueAnswerCalc(firstTerm, secondTerm, operator);
 
-  return gameParams;
+  return {
+    expression: question,
+    trueAnswer: answer,
+  };
 };
 
 const playCalc = () => playGame(GAME_PARAMS, getCalcParams);

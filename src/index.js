@@ -1,17 +1,15 @@
 import readlineSync from 'readline-sync';
 
-// скопировано с https://learn.javascript.ru/task/random-int-min-max
-export const getRandomInt = (min, max) => Math.round(min - 0.5 + Math.random() * (max - min + 1));
+const ROUNDS_COUNT = 3;
 
-export const isEven = (number) => number % 2 === 0;
-
-export const playGame = (gameParams, play) => {
+const playGame = (gameParams, getGameData) => {
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
-  console.log(`Welcome to the Brain Games!\n${gameParams.rule}`);
+  console.log('Welcome to the Brain Games!');
+  console.log(gameParams.rule.toString());
 
-  for (let i = 0; i < gameParams.roundsCount; i += 1) {
-    const params = play();
+  for (let i = 0; i < ROUNDS_COUNT; i += 1) {
+    const params = getGameData();
 
     const userAnswer = readlineSync.question(`Question: ${params.expression}\n`);
     console.log(`Your answer: ${userAnswer}`);
@@ -25,3 +23,5 @@ export const playGame = (gameParams, play) => {
     console.log('Correct!');
   }
 };
+
+export default playGame;

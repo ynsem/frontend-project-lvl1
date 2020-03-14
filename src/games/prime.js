@@ -1,33 +1,31 @@
-import { getRandomInt, playGame } from '../index.js';
+import playGame from '../index.js';
+import getRandomInt from '../utils.js';
 
 const GAME_PARAMS = {
   min: 1,
   max: 99,
-  roundsCount: 3,
   rule: 'Answer "yes" if given number is prime. Otherwise answer "no".',
 };
 
-// проверяет простое ли число 'yes', если нет - вернет 'no'
-const getTrueAnswerPrime = (number) => {
-  const dividers = [];
+const isPrime = (number) => {
   for (let i = 2; i < number / 2; i += 1) {
     if (number % i === 0) {
-      dividers.push(i);
+      return false;
     }
   }
-
-  return dividers.length === 0 ? 'yes' : 'no';
+  return true;
 };
 
+const getTrueAnswerPrime = (number) => (isPrime(number) ? 'yes' : 'no');
 
 const getPrimeParams = () => {
-  // подумать над названием
-  const gameParams = {};
+  const question = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
+  const answer = getTrueAnswerPrime(question);
 
-  gameParams.expression = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
-  gameParams.trueAnswer = getTrueAnswerPrime(gameParams.expression);
-
-  return gameParams;
+  return {
+    expression: question,
+    trueAnswer: answer,
+  };
 };
 
 const playPrime = () => playGame(GAME_PARAMS, getPrimeParams);

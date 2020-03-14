@@ -1,9 +1,9 @@
-import { getRandomInt, playGame } from '../index.js';
+import playGame from '../index.js';
+import getRandomInt from '../utils.js';
 
 const GAME_PARAMS = {
   min: 2,
   max: 50,
-  roundsCount: 3,
   rule: 'Find the greatest common divisor of given numbers.',
 };
 
@@ -22,15 +22,16 @@ const getTrueAnswerGcd = (firstNumber, secondNumber) => {
 };
 
 const getGcdParams = () => {
-  // подумать над названием
-  const gameParams = {};
-
   const firstNumber = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
   const secondNumber = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
 
-  gameParams.expression = `${firstNumber} ${secondNumber}`;
-  gameParams.trueAnswer = getTrueAnswerGcd(firstNumber, secondNumber);
-  return gameParams;
+  const question = `${firstNumber} ${secondNumber}`;
+  const answer = getTrueAnswerGcd(firstNumber, secondNumber);
+
+  return {
+    expression: question,
+    trueAnswer: answer,
+  };
 };
 
 const playGcd = () => playGame(GAME_PARAMS, getGcdParams);
