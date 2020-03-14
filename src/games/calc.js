@@ -24,7 +24,7 @@ const getTrueAnswerCalc = (firstTerm, secondTerm, operator) => {
     default:
   }
 
-  return `${answer}`;
+  return answer.toString();
 };
 
 const getCalcParams = () => {
