@@ -1,19 +1,17 @@
 import playGame from '../index.js';
 import getRandomInt from '../utils.js';
 
-const GAME_PARAMS = {
-  min: 1,
-  max: 10,
-  rule: 'What number is missing in the progression?',
-};
+const min = 1;
+const max = 10;
 
+const DESCRIPTION = 'What number is missing in the progression?';
 const PROGRESSION_LENGTH = 10;
 
 // генерирует прогрессию
-const getTrueAnswerProgression = (start, step) => {
+const getTrueAnswerProgression = (start, step, progressionLength) => {
   const result = [];
 
-  for (let i = 0; i < PROGRESSION_LENGTH - 1; i += 1) {
+  for (let i = 0; i < progressionLength - 1; i += 1) {
     result.push(start + step * i);
   }
 
@@ -21,10 +19,10 @@ const getTrueAnswerProgression = (start, step) => {
 };
 
 const getProgressionParams = () => {
-  const start = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
-  const step = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
+  const start = getRandomInt(min, max);
+  const step = getRandomInt(min, max);
 
-  const progression = getTrueAnswerProgression(start, step);
+  const progression = getTrueAnswerProgression(start, step, PROGRESSION_LENGTH);
   const randomIndex = getRandomInt(0, progression.length - 1);
 
   const answer = progression[randomIndex].toString();
@@ -38,6 +36,4 @@ const getProgressionParams = () => {
   };
 };
 
-const playProgression = () => playGame(GAME_PARAMS, getProgressionParams);
-
-export default playProgression;
+export default () => playGame(DESCRIPTION, getProgressionParams);

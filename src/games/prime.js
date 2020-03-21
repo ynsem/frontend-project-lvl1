@@ -1,11 +1,10 @@
 import playGame from '../index.js';
 import getRandomInt from '../utils.js';
 
-const GAME_PARAMS = {
-  min: 1,
-  max: 99,
-  rule: 'Answer "yes" if given number is prime. Otherwise answer "no".',
-};
+const min = 1;
+const max = 99;
+
+const DESCRIPTION = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (number) => {
   for (let i = 2; i < number / 2; i += 1) {
@@ -19,7 +18,7 @@ const isPrime = (number) => {
 const getTrueAnswerPrime = (number) => (isPrime(number) ? 'yes' : 'no');
 
 const getPrimeParams = () => {
-  const question = getRandomInt(GAME_PARAMS.min, GAME_PARAMS.max);
+  const question = getRandomInt(min, max);
   const answer = getTrueAnswerPrime(question);
 
   return {
@@ -28,6 +27,4 @@ const getPrimeParams = () => {
   };
 };
 
-const playPrime = () => playGame(GAME_PARAMS, getPrimeParams);
-
-export default playPrime;
+export default () => playGame(DESCRIPTION, getPrimeParams);
