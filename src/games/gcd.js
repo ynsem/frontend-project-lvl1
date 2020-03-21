@@ -7,7 +7,7 @@ const max = 50;
 const DESCRIPTION = 'Find the greatest common divisor of given numbers.';
 
 // ищет наибольший общий делитель
-const getTrueAnswerGcd = (firstNumber, secondNumber) => {
+const getGcd = (firstNumber, secondNumber) => {
   const result = [];
 
   for (let i = Math.min(firstNumber, secondNumber); i > 0; i -= 1) {
@@ -25,8 +25,8 @@ const getGcdParams = () => {
   const secondNumber = getRandomInt(min, max);
 
   const question = `${firstNumber} ${secondNumber}`;
-  // toString вынесен сюда из getTrueAnswerGcd, чтобы ф-я поиска НОД оставалась чистой
-  const answer = getTrueAnswerGcd(firstNumber, secondNumber).toString();
+  // toString вынесен сюда из getGcd, чтобы ф-я поиска НОД оставалась чистой
+  const answer = getGcd(firstNumber, secondNumber).toString();
 
   return {
     expression: question,
