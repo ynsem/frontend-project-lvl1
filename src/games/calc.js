@@ -1,11 +1,11 @@
 import playGame from '../index.js';
 import getRandomInt from '../utils.js';
 
-const min = 1;
-const max = 99;
+const MIN = 1;
+const MAX = 99;
 
 const DESCRIPTION = 'What is the result of the expression?';
-const OPERATORS = [];
+const OPERATORS = ['+', '-', '*'];
 
 const getTrueAnswerCalc = (firstTerm, secondTerm, operator) => {
   let answer = 0;
@@ -29,8 +29,8 @@ const getTrueAnswerCalc = (firstTerm, secondTerm, operator) => {
 };
 
 const getCalcParams = () => {
-  const firstTerm = getRandomInt(min, max);
-  const secondTerm = getRandomInt(min, max);
+  const firstTerm = getRandomInt(MIN, MAX);
+  const secondTerm = getRandomInt(MIN, MAX);
 
   const operator = OPERATORS[getRandomInt(0, OPERATORS.length - 1)];
 
