@@ -7,8 +7,9 @@ const MAX = 99;
 const DESCRIPTION = 'What is the result of the expression?';
 const OPERATORS = ['+', '-', '*'];
 
-const getTrueAnswerCalc = (firstTerm, secondTerm, operator) => {
-  let answer = 0;
+const getCorrectAnswer = (firstTerm, secondTerm, operator) => {
+  let answer;
+
   switch (operator) {
     case '+':
       answer = firstTerm + secondTerm;
@@ -20,9 +21,7 @@ const getTrueAnswerCalc = (firstTerm, secondTerm, operator) => {
       answer = firstTerm * secondTerm;
       break;
     default:
-      // вынесено отдельно, а не прописано как начальное значение,
-      // т.к. это заглушка, вместо обработки ошибки
-      answer = false;
+      return false;
   }
 
   return answer.toString();
@@ -35,7 +34,7 @@ const getCalcParams = () => {
   const operator = OPERATORS[getRandomInt(0, OPERATORS.length - 1)];
 
   const question = `${firstTerm} ${operator} ${secondTerm}`;
-  const answer = getTrueAnswerCalc(firstTerm, secondTerm, operator);
+  const answer = getCorrectAnswer(firstTerm, secondTerm, operator);
 
   return {
     expression: question,

@@ -21,11 +21,9 @@ const isPrime = (number) => {
   return true;
 };
 
-const getTrueAnswerPrime = (number) => (isPrime(number) ? 'yes' : 'no');
-
 const getPrimeParams = () => {
   const question = getRandomInt(MIN, MAX);
-  const answer = getTrueAnswerPrime(question);
+  const answer = isPrime(question) ? 'yes' : 'no';
 
   return {
     expression: question,

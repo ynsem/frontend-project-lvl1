@@ -8,11 +8,9 @@ const DESCRIPTION = 'Answer "yes" if the number is even, otherwise answer "no".'
 
 const isEven = (number) => number % 2 === 0;
 
-const getTrueAnswerEven = (number) => (isEven(number) ? 'yes' : 'no');
-
 const getEvenParams = () => {
   const question = getRandomInt(MIN, MAX);
-  const answer = getTrueAnswerEven(question);
+  const answer = isEven(question) ? 'yes' : 'no';
 
   return {
     expression: question,
